@@ -96,7 +96,7 @@ function PlasmaCore:NewWindow(Size,Color,Draggable,CornerType)
 			end
 		elseif CornerType == 2 then
 			local Corner = Instance.new("UICorner",Window)
-			Corner.CornerRadius = UDim.new(9,9)
+			Corner.CornerRadius = UDim.new(2,2)
 		end
 		return Window
 	end	
@@ -113,7 +113,7 @@ function PlasmaCore:NewFrame(Size, Color, Window, CornerType)
 			end
 		elseif CornerType == 2 then
 			local Corner = Instance.new("UICorner",Frame)
-			Corner.CornerRadius = UDim.new(9,9)
+			Corner.CornerRadius = UDim.new(1.5,1.5)
 		end
 		return Frame
 	end
@@ -134,7 +134,7 @@ function PlasmaCore:NewTextButton(Window,Size,Text,BackColor,TextColor1,TextColo
 			end
 		elseif CornerType == 2 then
 			local Corner = Instance.new("UICorner",Button)
-			Corner.CornerRadius = UDim.new(9,9)
+			Corner.CornerRadius = UDim.new(1,1)
 		end
 		return Button
 	end
@@ -155,7 +155,7 @@ function PlasmaCore:NewTextLabel(Window,Size,Text,BackColor,TextColor1,TextColor
 			end
 		elseif CornerType == 2 then
 			local Corner = Instance.new("UICorner",Button)
-			Corner.CornerRadius = UDim.new(9,9)
+			Corner.CornerRadius = UDim.new(1,1)
 		end
 	end
 end
