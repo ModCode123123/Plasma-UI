@@ -1,0 +1,191 @@
+--[[
+    ____  __    ___   _____ __  ______       __  ______   
+   / __ \/ /   /   | / ___//  |/  /   |     / / / /  _/   
+  / /_/ / /   / /| | \__ \/ /|_/ / /| |    / / / // /     
+ / ____/ /___/ ___ |___/ / /  / / ___ |   / /_/ // /      
+/_/   /_____/_/  |_/____/_/  /_/_/  |_|   \____/___/     v1
+                                                          
+A free and opensourced UI library for Roblox By Sticks567#1852 or @AlgodooUser123
+No obfuscated code,  No Malicious Code and No Loggers 
+]]
+
+
+--// Plasma UI for Lua
+
+-- Simple Doccumentation
+
+--[[
+CornerTypes: 1 = sharp , 2 = Smooth
+
+--// General Important Functions
+Plasma:NewWindow(Size: UDim2, Color: Color3 , Draggable : Bool, CornerType) -- Creates a New window under the CoreGUI of Plasma
+Plasma:NewFrame(Size: UDim2, Color : Color3, Window : Instance,CornerType : Number) -- Creates a New Frame under A Window
+
+--// Buttons  & Text 
+Plasma:NewTextButton(Window : Instance, Size: UDim2, Text: String, BackColor : Color3, TextColor1 : Color3, TextColor2 : Color3, CornerType: Number, Transparency: Number)
+Plasma:NewTextLabel(Window : Instance,, Size: UDim2, Text: String, BackColor : Color3, TextColor1 : Color3, TextColor2 : Color3, CornerType: Number, Transparency: Number)
+
+--// UI Enhancments
+
+Plasma:NewGradient(Frame: Instance, Color1: Color3 , Color2 : Color3, Rotation: Number)
+
+Plasma UI© 2023
+
+
+]]
+-- Warnings
+--[[
+WARNING: IF YOU FIND A VERSION OF PLASMA UI© THAT IS NOT MADE BY THE GITHUB PAGE: https://github.com/ModCode123123/Plasma-UI 
+THEN REPORT IT TO THE OFFICAL PLASMA DISCORD SERVER : https://discord.gg/Uh48a2fyAu AND WE WILL TAKE ACTION TO REMOVE THE FAKE VERSION
+OF PLASMA UI
+
+Reason:
+FAKE VERSIONS OF PLASMA MAY INCLUDE [Obfuscated Code, Malicious Code and Loggers]
+PLEASE GO TO : https://github.com/ModCode123123/Plasma-UI  FOR THE REAL PLASMA UI
+
+]]
+local Player = game:GetService("Players").LocalPlayer
+local Character = Player.Character
+
+local PlayerGUI = Player.PlayerGui
+local PlayerScripts = Player.PlayerScripts
+local PlayerMouse = Player:GetMouse()
+
+-- Varibles here
+local DraggableType = 2 -- 1 = Rigid / Rough , 2 = Smooth / Soft (MOVEMENT)
+
+--// Creating the Plasma CoreGUI
+
+local PLMS_CORE = Instance.new("ScreenGui",PlayerGUI)
+local PLMS_SCREENFRAME = Instance.new("Frame",PLMS_CORE)
+
+PLMS_CORE.Name = "CoreGUI"
+PLMS_CORE.ResetOnSpawn = false
+
+PLMS_SCREENFRAME.Name = "Popups"
+
+--// Fixers
+
+PLMS_CORE.Destroying:Connect(function()
+	local C = PLMS_CORE:Clone()
+	C.Parent = PlayerGUI
+	PLMS_CORE = C
+	return
+end)
+
+--// Creating Functions
+
+local PlasmaCore = {}
+
+function PlasmaCore:NewWindow(Size,Color,Draggable,CornerType)
+	if (Size and Color) then
+		local Window = Instance.new("Frame",PLMS_CORE)
+		Window.Size = Size
+		Window.BackgroundColor3 = Color
+		Window.BorderSizePixel = 0
+		if Draggable == true then
+			if DraggableType == 1 then
+				Window.Draggable = true
+			elseif DraggableType == 2 then
+				
+			end
+		end
+		if CornerType ~= nil and CornerType == 1 then
+			if Window:FindFirstChildOfClass("UICorner") then
+				Window:FindFirstChildOfClass("UICorner"):Destroy()
+			end
+		elseif CornerType == 2 then
+			local Corner = Instance.new("UICorner",Window)
+			Corner.CornerRadius = UDim.new(9,9)
+		end
+		return Window
+	end	
+end
+function PlasmaCore:NewFrame(Size, Color, Window, CornerType)
+	if (Size and Color and Window) then
+		local Frame = Instance.new("Frame",Window)
+		Frame.BackgroundColor3 = Color
+		Frame.Size = Size
+		Frame.BorderSizePixel = 0
+		if CornerType ~= nil and CornerType == 1 then
+			if Frame:FindFirstChildOfClass("UICorner") then
+				Frame:FindFirstChildOfClass("UICorner"):Destroy()
+			end
+		elseif CornerType == 2 then
+			local Corner = Instance.new("UICorner",Frame)
+			Corner.CornerRadius = UDim.new(9,9)
+		end
+		return Frame
+	end
+end
+function PlasmaCore:NewTextButton(Window,Size,Text,BackColor,TextColor1,TextColor2,CornerType,Transparency)
+	if (Window and Size and Text and BackColor and TextColor1 and TextColor2) then
+		local Button = Instance.new("TextButton",Window)
+		Button.Text = Text
+		Button.Size = Size
+		Button.BackgroundColor3 = BackColor
+		Button.TextColor3 = TextColor1
+		Button.TextStrokeColor3 = TextColor2
+		Button.TextStrokeTransparency = 0
+		Button.BorderSizePixel = 0
+		if CornerType ~= nil and CornerType == 1 then
+			if Button:FindFirstChildOfClass("UICorner") then
+				Button:FindFirstChildOfClass("UICorner"):Destroy()
+			end
+		elseif CornerType == 2 then
+			local Corner = Instance.new("UICorner",Button)
+			Corner.CornerRadius = UDim.new(9,9)
+		end
+		return Button
+	end
+end
+function PlasmaCore:NewTextLabel(Window,Size,Text,BackColor,TextColor1,TextColor2,CornerType,Transparency)
+	if (Window and Size and Text and BackColor and TextColor1 and TextColor2) then
+		local Button = Instance.new("TextLabel",Window)
+		Button.Text = Text
+		Button.Size = Size
+		Button.BackgroundColor3 = BackColor
+		Button.TextColor3 = TextColor1
+		Button.TextStrokeColor3 = TextColor2
+		Button.TextStrokeTransparency = 0
+		Button.BorderSizePixel = 0
+		if CornerType ~= nil and CornerType == 1 then
+			if Button:FindFirstChildOfClass("UICorner") then
+				Button:FindFirstChildOfClass("UICorner"):Destroy()
+			end
+		elseif CornerType == 2 then
+			local Corner = Instance.new("UICorner",Button)
+			Corner.CornerRadius = UDim.new(9,9)
+		end
+	end
+end
+function PlasmaCore:NewGradient(Frame, Color1,Color2,Rotation)
+	if (Frame and Color1 and Color2) then
+		local Gradient = Instance.new("UIGradient",Frame)
+		Gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0,Color1),ColorSequenceKeypoint.new(1,Color2)})
+		Gradient.Rotation = Rotation
+		return Gradient
+	end
+end
+
+--// Functions for Beginners
+
+function PlasmaCore:ProgramButton(Button,Instance2,Type)
+	if Button and Type then
+		if Button.ClassName == "TextButton"  then
+			if Type == 1 then
+				Button.MouseButton1Click:Connect(function()
+					if Instance2 then
+						if Instance2.ClassName == "Frame" then
+							Instance2.Visible = not Instance2.Visible
+						end
+					end
+				end)
+			elseif Type == 2 then
+				
+			end
+		end
+	end
+end
+	
+return PlasmaCore
